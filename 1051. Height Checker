@@ -2,5 +2,7 @@ from typing import List
 
 class Solution:
     def heightChecker(self, heights: List[int]) -> int:
+        # Step 1: Get correct order
         expected = sorted(heights)
+        # Step 2: Count mismatches
         return sum(heights[i] != expected[i] for i in range(len(heights)))
