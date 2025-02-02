@@ -1,0 +1,11 @@
+from typing import List
+
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        # Create a set of all numbers from 1 to n
+        full_set = set(range(1, n + 1))  
+        # Convert nums to a set to remove duplicates
+        num_set = set(nums)  
+        # Find missing numbers and return as a list
+        return list(full_set - num_set)
