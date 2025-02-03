@@ -2,9 +2,9 @@ from typing import List
 
 class Solution:
     def checkIfExist(self, arr: List[int]) -> bool:
-        seen = set()
-        for num in arr:
-            if num * 2 in seen or (num % 2 == 0 and num // 2 in seen):
-                return True
-            seen.add(num)
-        return False
+        seen = set()  # A set to store numbers we've seen so far
+        for num in arr:  # Loop through each number in the array
+            if num * 2 in seen or (num % 2 == 0 and num // 2 in seen):  
+                return True  # If we find a match, return True immediately
+            seen.add(num)  # Add the number to the set
+        return False  # If no match is found, return False
