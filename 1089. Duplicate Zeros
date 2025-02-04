@@ -1,0 +1,18 @@
+from typing import List
+
+class Solution:
+    def duplicateZeros(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        n = len(arr)
+        # Count the number of zeros in the array
+        count = arr.count(0) 
+         ## Pointer to traverse the original array
+        i = 0  
+        while i < n:
+            if arr[i] == 0:
+                arr.insert(i, 0)  # Insert a zero at the current index
+                arr.pop()  # Remove the last element to maintain length
+                i += 1  # Skip the next element as it's a duplicated zero
+            i += 1
