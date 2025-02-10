@@ -1,0 +1,8 @@
+from typing import List
+
+class Solution:
+    def findLucky(self, arr: List[int]) -> int:
+        for num in sorted(set(arr), reverse=True):  # Step 1: Get unique numbers & sort in descending order
+            if arr.count(num) == num:  # Step 2: Check if frequency matches value
+                return num  # Step 3: Return the largest lucky number
+        return -1  # Step 4: If no lucky number found, return -1
