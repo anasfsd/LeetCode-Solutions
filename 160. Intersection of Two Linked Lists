@@ -1,0 +1,22 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        if not headA or not headB:
+            return None  # No intersection if either list is empty
+
+        # Initialize two pointers at the head of each list
+        ptrA, ptrB = headA, headB
+
+        # Traverse both lists
+        while ptrA != ptrB:
+            # Move to the next node, or switch to the other list's head
+            ptrA = ptrA.next if ptrA else headB
+            ptrB = ptrB.next if ptrB else headA
+
+        # The pointers meet at the intersection node or at None
+        return ptrA
