@@ -1,0 +1,24 @@
+from typing import Optional
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head  # If empty or only 1 node, return as is.
+
+        odd = head  # First node (odd list head)
+        even = head.next  # Second node (even list head)
+        even_head = even  # Store the even list start
+
+        while even and even.next:
+            odd.next = even.next  # Move odd pointer to next odd node
+            odd = odd.next  # Move odd pointer forward
+            even.next = odd.next  # Move even pointer to next even node
+            even = even.next  # Move even pointer forward
+        
+        odd.next = even_head  # Attach even list to end of odd list
+        return head
