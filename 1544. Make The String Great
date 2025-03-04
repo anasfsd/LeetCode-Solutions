@@ -1,0 +1,13 @@
+class Solution:
+    def makeGood(self, s: str) -> str:
+        stack = []   
+        for char in s:
+#If a lowercase letter comes before the uppercase one (aA), the difference is 32.
+#If an uppercase letter comes before the lowercase one (Aa), the difference is -32.
+#Using abs() ensures we catch both cases.
+            if stack and abs(ord(stack[-1]) - ord(char)) == 32:
+                stack.pop()  # Remove the last character as it forms a bad pair
+            else:
+                stack.append(char)
+        
+        return "".join(stack)
