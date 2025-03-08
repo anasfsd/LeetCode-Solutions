@@ -1,0 +1,31 @@
+from typing import Optional
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def removeZeroSumSublists(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)  # Dummy node to handle cases where head is removed
+        dummy.next = head
+        #Prefix sum helps detect and remove subarrays that sum to zero efficiently.
+        prefix_sum = 0
+        sum_map = {}  # Dictionary to store prefix sum and corresponding node
+        current = dummy
+
+        # First pass: Store prefix sums
+        while current:
+            prefix_sum += current.val
+            sum_map[prefix_sum] = current  # Store the last occurrence of this sum
+            current = current.next
+
+        # Second pass: Remove nodes forming zero-sum sequences
+        prefix_sum = 0
+        current = dummy
+        while current:
+            prefix_sum += current.val
+            current.next = sum_map[prefix_sum].next  # Skip nodes forming zero-sum sequences
+            current = current.next
+        
+        return dummy.next  # Return the modified list
