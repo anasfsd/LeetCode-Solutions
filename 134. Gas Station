@@ -1,0 +1,22 @@
+from typing import List
+
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        total_gas = 0  # Total gas available
+        total_cost = 0  # Total cost needed
+        tank = 0        # Current gas in tank
+        start_index = 0 # Starting station index
+        
+        # Iterate through all stations
+        for i in range(len(gas)):
+            total_gas += gas[i]
+            total_cost += cost[i]
+            tank += gas[i] - cost[i]
+            
+            # If tank becomes negative, reset start index and tank
+            if tank < 0:
+                start_index = i + 1
+                tank = 0  # Reset the tank
+        
+        # If total gas is less than total cost, return -1 (not possible)
+        return start_index if total_gas >= total_cost else -1
