@@ -1,0 +1,29 @@
+from typing import List
+
+class Solution:
+    def countSquares(self, matrix: List[List[int]]) -> int:
+        m, n = len(matrix), len(matrix[0])  # Get the number of rows (m) and columns (n)
+        count = 0  # Initialize the count of square submatrices
+
+        # Iterate through each cell in the matrix
+        for i in range(m):
+            for j in range(n):
+                # If the cell is 1 and it's NOT in the first row or first column
+                if matrix[i][j] == 1 and i > 0 and j > 0:
+                    top = matrix[i-1][j]  # Value from the top cell
+                    left = matrix[i][j-1]  # Value from the left cell
+                    top_left = matrix[i-1][j-1]  # Value from the top-left diagonal cell
+
+                    # Instead of using min(), we manually check conditions
+                    if top == left == top_left:  # If all three values are equal
+                        matrix[i][j] = top + 1  # Increase by 1
+                    elif top <= left and top <= top_left:  # If the top cell is the smallest
+                        matrix[i][j] = top + 1
+                    elif left <= top and left <= top_left:  # If the left cell is the smallest
+                        matrix[i][j] = left + 1
+                    else:  # If the diagonal (top-left) cell is the smallest
+                        matrix[i][j] = top_left + 1
+
+                count += matrix[i][j]  # Add the current cell value to the total count
+
+        return count  # Return the total number of square submatrices
