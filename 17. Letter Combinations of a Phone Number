@@ -1,0 +1,28 @@
+from typing import List
+from collections import deque
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+        
+        # Mapping of digits to letters
+        phone = {
+            '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',
+            '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'
+        }
+
+        queue = deque([""])  # Start with an empty combination
+        
+        for digit in digits:
+            # Get letters for the current digit/Fetch the letters mapped to the current digit.
+            letters = phone[digit]  
+            size = len(queue)
+            
+            for _ in range(size):  #Process each combination one by one
+                combination = queue.popleft()  # Take the first combination
+                
+                for letter in letters:
+                    queue.append(combination + letter)  # Append new combinations
+        
+        return list(queue)  # Convert deque to list and return
