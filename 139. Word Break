@@ -1,0 +1,23 @@
+from typing import List
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        word_set = set(wordDict)  # Convert list to set for fast lookup
+        memo = {}  # Store results to avoid repeat work
+
+        def canBreak(start):
+            if start == len(s):  # If we reach the end, return True
+                return True
+            if start in memo:  # If already checked, return stored result
+                return memo[start]
+
+            for word in wordDict:  
+                if s[start:].startswith(word):  # If word matches
+                    if canBreak(start + len(word)):  # Check the next part
+                        memo[start] = True
+                        return True  
+
+            memo[start] = False  # No valid split found
+            return False  
+
+        return canBreak(0)  # Start from the first letter
