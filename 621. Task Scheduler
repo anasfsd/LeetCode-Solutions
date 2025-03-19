@@ -1,11 +1,23 @@
-from collections import Counter
-from typing import List
-
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         freq = list(Counter(tasks).values())  # Count frequencies of tasks
-        max_freq = max(freq)  # Find max frequency
-        max_count = freq.count(max_freq)  # Count tasks with max frequency
+        max_freq = max(freq)  # Find max frequency(3)
+        #max_count = [3, 3].count(3)  # max_count = 2 (both A and B appear 3 times)
+        max_count = freq.count(max_freq)  
+#There are 3 A's but only 2 gaps, so we subtract 1 from max_freq.
+#Each gap includes the task itself and the idle slots. Each group of A’s takes 3 slots (A + n). So, we add 1 to n to count the full group.
+
         
-        # Calculate minimum intervals required
         return max(len(tasks), (max_freq - 1) * (n + 1) + max_count)
+
+
+#(minimum time) = (3 - 1) * (2 + 1) + 2
+            #   = 2 * 3 + 2
+           #    = 6 + 2
+           #    = 8
+
+    # (2 - 1) * (1 + 1) + 2
+    # = 1 * 2 + 2
+    # = 3 + 2
+    # = 4
+
