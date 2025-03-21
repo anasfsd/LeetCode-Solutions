@@ -1,0 +1,33 @@
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        parent = {}  # Union-Find parent mapping
+        email_to_name = {}  # Map email to name
+
+        def find(email):
+            if parent[email] != email:
+                parent[email] = find(parent[email])  # Path compression
+            return parent[email]
+
+        # Step 1: Build Union-Find structure
+        for account in accounts:
+            name = account[0]
+            first_email = account[1]
+
+            for email in account[1:]:
+                if email not in parent:
+                    parent[email] = email  # Initialize parent to itself
+                parent[find(email)] = find(first_email)  # Union operation
+                email_to_name[email] = name  # Map email to its name
+
+        # Step 2: Group emails by their root parent
+        merged_accounts = defaultdict(set)
+        for email in parent:
+            root_email = find(email)
+            merged_accounts[root_email].add(email)
+
+        # Step 3: Format the output
+        result = []
+        for root_email, emails in merged_accounts.items():
+            result.append([email_to_name[root_email]] + sorted(emails))  # Sort emails
+
+        return result
