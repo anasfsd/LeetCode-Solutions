@@ -1,0 +1,17 @@
+class Solution:
+    def subtractProductAndSum(self, n: int) -> int:
+        digits = [int(d) for d in str(n)]  # Convert number to a list of digits
+        product = 1
+        total_sum = 0
+
+        for digit in digits:
+            product *= digit   # Multiply digits
+            total_sum += digit # Add digits
+
+        return product - total_sum  # Return the difference
+
+#digits = [2, 3, 4]
+#product = 2 * 3 * 4 = 24
+#total_sum = 2 + 3 + 4 = 9
+#return 24 - 9 = 15
+
