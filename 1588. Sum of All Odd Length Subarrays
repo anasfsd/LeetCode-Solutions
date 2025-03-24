@@ -1,14 +1,17 @@
-from typing import List
-
 class Solution:
     def sumOddLengthSubarrays(self, arr: List[int]) -> int:
-        total_sum = 0
-        n = len(arr)
-        
-        # Loop over all possible starting points
-        for start in range(n):
-            # Loop over all possible ending points with odd lengths
-            for end in range(start, n, 2):  # Increment by 2 to ensure odd length
-                    total_sum += sum(arr[start:end+1])  # Sum the subarray
-        
+        total_sum=0
+        n=len(arr)
+        for i in range(n):
+            for j in range(i,n,2):
+                total_sum += sum(arr[i:j+1])
         return total_sum
+#j = 0 → arr[0:1] = [1] ✅ (length = 1)
+#j = 2 → arr[0:3] = [1,4,2] ✅ (length = 3)
+#j = 4 → arr[0:5] = [1,4,2,5,3] ✅ (length = 5)
+
+#j = 1 → arr[1:2] = [4] ✅ (length = 1)
+#j = 3 → arr[1:4] = [4,2,5] ✅ (length = 3)
+
+#j = 2 → arr[2:3] = [2] ✅ (length = 1)
+#j = 4 → arr[2:5] = [2,5,3] ✅ (length = 3)
