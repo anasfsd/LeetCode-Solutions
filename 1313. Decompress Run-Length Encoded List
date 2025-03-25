@@ -1,0 +1,8 @@
+class Solution:
+    def decompressRLElist(self, nums: List[int]) -> List[int]:
+        result = []
+        for i in range(0, len(nums), 2):  # Process every two elements
+            freq = nums[i]
+            val = nums[i + 1] #  2, 4
+            result.extend([val] * freq)  # Append 'val' freq times
+        return result
