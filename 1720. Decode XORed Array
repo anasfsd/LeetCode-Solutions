@@ -1,0 +1,11 @@
+class Solution:
+    def decode(self, encoded, first):
+        res = [first]  # Initialize arr with the first element
+        for num in encoded:
+            res.append(res[-1] ^ num)  # 4 XOR 6=2 , 2 XOR 2=0, 0 XOR 7 =0 ,  7 XOR 3 = 4
+        return res
+#res = [4]
+#4 ^ 6 = 2  -> res = [4, 2]
+#2 ^ 2 = 0  -> res = [4, 2, 0]
+#0 ^ 7 = 7  -> res = [4, 2, 0, 7]
+#7 ^ 3 = 4  -> res = [4, 2, 0, 7, 4]
