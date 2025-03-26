@@ -1,0 +1,17 @@
+class Solution:
+    def uniqueMorseRepresentations(self, words):
+        morse_code = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---",
+                      "-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-",
+                      "..-","...-",".--","-..-","-.--","--.."]
+        char_to_morse = {chr(i + 97): morse_code[i] for i in range(26)}
+        # Convert words to Morse code and store unique ones
+        transformations = {"".join(char_to_morse[c] for c in word) for word in words}
+        return len(transformations)
+#chr(i + 97) converts numbers into letters:
+#chr(97) -> 'a'
+#...
+#chr(122) -> 'z'
+
+#Each letter is mapped to its corresponding Morse code from the morse_code list:
+#'a' → ".-"
+#'b' → "-..."
