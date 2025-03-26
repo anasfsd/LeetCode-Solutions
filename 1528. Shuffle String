@@ -1,0 +1,15 @@
+class Solution:
+    def restoreString(self, s: str, indices: list) -> str:
+        result = [''] * len(s)  # Create a list to store shuffled characters
+        for i in range(len(s)):
+            result[indices[i]] = s[i]  # Place each character in the correct position
+        return ''.join(result)  # Convert list to string and return
+
+#s[0] = 'c', place it at indices[0] = 4
+#result = ["", "", "", "", "c", "", "", ""]
+
+#s[1] = 'o', place it at indices[1] = 5
+#result = ["", "", "", "", "c", "o", "", ""]
+
+#s[2] = 'd', place it at indices[2] = 6
+#result = ["", "", "", "", "c", "o", "d", ""]
