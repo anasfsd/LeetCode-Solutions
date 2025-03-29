@@ -1,0 +1,15 @@
+class Solution:
+    def targetIndices(self, nums, target):
+        # Step 1: Sort the list
+        nums.sort()
+        
+        # Step 2: Initialize an empty list to store the target indices
+        result = []
+        
+        # Step 3: Find indices where the number equals the target
+        for i in range(len(nums)):
+            if nums[i] == target:
+                result.append(i)
+        
+        # Step 4: Return the result list
+        return result
