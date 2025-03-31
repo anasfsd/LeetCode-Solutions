@@ -1,0 +1,17 @@
+class Solution:
+    def uniqueOccurrences(self, arr: list[int]) -> bool:        
+#Frequency of each element: Counter({1: 3, 2: 2, 3: 1})
+        freq = Counter(arr)
+#List of occurrences: [3, 2, 1]
+        occurrences = list(freq.values())
+#Unique occurrences: {1, 2, 3}
+        return len(occurrences) == len(set(occurrences))
+#Frequency of each element: Counter({1: 1, 2: 1})
+#List of occurrences: [1, 1]
+#Unique occurrences: {1}
+#False
+
+#Frequency of each element: Counter({1: 4, -3: 3, 0: 2, 10: 1})
+#List of occurrences: [3, 2, 4, 1]
+#Unique occurrences: {1, 2, 3, 4}
+#True
