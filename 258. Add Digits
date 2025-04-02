@@ -1,0 +1,15 @@
+class Solution:
+    def addDigits(self, num: int) -> int:
+#A single-digit number (0 to 9) is already the final result, so we don't need to process it.
+#Any number greater than or equal to 10 has at least two digits (e.g., 10, 38, 123).
+        while num >= 10:
+            num = sum(int(digit) for digit in str(num))
+        return num
+#If num = 38, the steps are:
+#Convert 38 to "38".
+#Iterate through the digits: "3" and "8".
+#Convert them back to integers: 3 and 8.
+#Sum them: 3 + 8 = 11.
+#The loop repeats with num = 11.
+#Next iteration: 1 + 1 = 2.
+#Now num = 2, which is a single digit, so the loop stops.
