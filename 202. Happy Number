@@ -1,0 +1,18 @@
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        seen = set()
+
+        while n != 1:
+            if n in seen:
+                return False  # we are in a loop
+            seen.add(n)
+            
+            # calculate sum of squares of digits
+            n = sum(int(digit) ** 2 for digit in str(n))
+
+        return True  # we reached 1, so it's a happy number
+
+#1² + 9² = 1 + 81 = 82 → Seen = {19}
+#8² + 2² = 64 + 4 = 68 → Seen = {19, 82}
+#6² + 8² = 36 + 64 = 100 → Seen = {19, 82, 68}
+#1² + 0² + 0² = 1 → 🎉 Done! Happy number.
