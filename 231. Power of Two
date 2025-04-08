@@ -1,0 +1,15 @@
+class Solution:
+    def isPowerOfTwo(self, n: int) -> bool:
+        if n <= 0:
+            return False
+        while n % 2 == 0:
+            n = n // 2
+        return n == 1
+#If n == 1, it means we successfully divided it by 2 multiple times to get to 1 ⇒ ✅ power of 2
+#16 % 2 == 0 → divide → n = 8
+#8 % 2 == 0 → divide → n = 4
+#4 % 2 == 0 → divide → n = 2
+#2 % 2 == 0 → divide → n = 1
+#1 % 2 != 0 → stop
+#Now n == 1, so return True
+#✅ 16 is a power of 2
