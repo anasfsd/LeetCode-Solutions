@@ -1,0 +1,17 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1 #Start with left = 0, right = 3 (the last index).
+
+        
+        while left <= right:
+            mid = (left + right) // 2  # Calculate middle index
+            
+            if nums[mid] == target:
+                return mid  # If the target is found, return the index
+            elif nums[mid] < target:
+                left = mid + 1  # Target is in the right half
+            else:
+                right = mid - 1  # Target is in the left half
+        
+        return left  # Return the position where the target should be inserted
+
