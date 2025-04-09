@@ -1,0 +1,25 @@
+# The guess API is already defined for you.
+# @param num, your guess
+# @return -1 if num is higher than the picked number
+#          1 if num is lower than the picked number
+#          otherwise return 0
+# def guess(num: int) -> int:
+
+class Solution:
+    def guessNumber(self, n: int) -> int:
+        left, right = 1, n  # Set the search range from 1 to n
+        
+        while left <= right:  # Keep searching until range is exhausted
+            mid = (left + right) // 2  # Get the middle of the current range
+            
+            # Call the guess API to check if mid is the number
+            result = guess(mid)
+            
+            if result == 0:  # Correct guess
+                return mid
+            elif result == -1:  # Guess is too high
+                right = mid - 1  # Narrow the search to the left side
+            else:  # Guess is too low
+                left = mid + 1  # Narrow the search to the right side
+        
+        return -1  # If we don't find it, which should not happen in this problem
