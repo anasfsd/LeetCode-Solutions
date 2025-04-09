@@ -1,0 +1,17 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1  # Set up two pointers, left and right
+        
+        while left <= right:  # Keep searching until we run out of range
+            mid = (left + right) // 2  # Find the middle index
+
+            if nums[mid] == target:  # Check if the middle number is the target
+                return mid  # If found, return the index
+            
+            elif nums[mid] < target:  # If the target is greater, move to the right side
+                left = mid + 1  # We only care about the right side, so shift left pointer
+                
+            else:  # If the target is smaller, move to the left side
+                right = mid - 1  # We only care about the left side, so shift right pointer
+                
+        return -1  # If we exit the loop, it means the target was not found
