@@ -1,0 +1,25 @@
+class Solution:
+    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+        left, right = 0, len(arr) - 1
+        
+        while left < right:
+            mid = (left + right) // 2
+            
+            # Check if the middle element is less than the next element
+            if arr[mid] < arr[mid + 1]:
+                # Peak is to the right
+                left = mid + 1
+            else:
+                # Peak is to the left
+                right = mid
+        
+        return left
+#right = mid means that the peak could be at mid or to the left of it, so we update the right boundary #to mid to #continue searching in the left half.
+
+
+
+
+
+
+
+
