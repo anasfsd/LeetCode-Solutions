@@ -1,0 +1,15 @@
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        # Get the lengths of both strings
+        n, m = len(haystack), len(needle)
+        
+        # Edge case: if needle is empty, return 0
+        if m == 0:
+            return 0
+
+        # Slide over haystack and check for needle
+        for i in range(n - m + 1):#check last index
+            if haystack[i:i + m] == needle:
+                return i  # Return the index of first match
+
+        return -1  # No match found
