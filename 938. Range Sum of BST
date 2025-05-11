@@ -1,0 +1,19 @@
+class Solution:
+    def rangeSumBST(self, root, low, high):
+        # If the tree is empty, return 0
+        if root is None:
+            return 0
+
+        # If the value is smaller than low, ignore the left part
+        if root.val < low:
+            return self.rangeSumBST(root.right, low, high)
+
+        # If the value is bigger than high, ignore the right part
+        if root.val > high:
+            return self.rangeSumBST(root.left, low, high)
+
+        # If the value is within range, add it
+        # and explore both left and right children
+        return (root.val +
+                self.rangeSumBST(root.left, low, high) +
+                self.rangeSumBST(root.right, low, high))
