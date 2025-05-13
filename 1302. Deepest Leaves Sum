@@ -1,0 +1,25 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        
+        queue = deque([root])  # Start BFS with the root node
+        
+        while queue:
+            level_sum = 0  # Reset sum for the current level
+            for _ in range(len(queue)):  # Process all nodes at the current level
+                node = queue.popleft()  # Remove node from the front of the queue
+                level_sum += node.val   # Add node value to the current level sum
+                if node.left:
+                    queue.append(node.left)  # Add left child to queue
+                if node.right:
+                    queue.append(node.right) # Add right child to queue
+        
+        return level_sum  # At the end, this is the sum of the deepest leaves
+        
