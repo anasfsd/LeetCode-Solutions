@@ -1,0 +1,22 @@
+class Solution:
+    def allPathsSourceTarget(self, graph):
+        result = []  # This will store all the valid paths
+        def dfs(current_node, path):
+            # If we reach the last node, save the path
+            if current_node == len(graph) - 1:
+                result.append(path)
+                return
+            # Visit all neighbors of the current node
+            for next_node in graph[current_node]:
+                dfs(next_node, path + [next_node])
+
+        # Start DFS from node 0 with path [0]
+        dfs(0, [0])
+        return result
+#🔁 How it works:
+#Call	Path
+#dfs(0, [0])	Start
+#dfs(1, [0,1])	Go to 1
+#dfs(3, [0,1,3])	Hit the end — save it ✅
+#dfs(2, [0,2])	Go to 2
+#dfs(3, [0,2,3])	Hit the end — save it ✅
