@@ -1,0 +1,23 @@
+from bisect import bisect_right
+from collections import defaultdict
+from typing import List
+
+class TopVotedCandidate:
+
+    def __init__(self, persons: List[int], times: List[int]):
+        self.times = times
+        self.leaders = []
+        vote_counts = defaultdict(int)
+        leader = -1
+        max_votes = 0
+
+        for person in persons:
+            vote_counts[person] += 1
+            if vote_counts[person] >= max_votes:
+                max_votes = vote_counts[person]
+                leader = person
+            self.leaders.append(leader)
+
+    def q(self, t: int) -> int:
+        idx = bisect_right(self.times, t) - 1
+        return self.leaders[idx]
