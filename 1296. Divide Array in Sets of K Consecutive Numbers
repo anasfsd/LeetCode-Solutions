@@ -1,0 +1,51 @@
+class Solution:
+    def isPossibleDivide(self, nums: List[int], k: int) -> bool:
+        if len(nums) % k != 0:
+            return False
+
+        count = Counter(nums)
+        for num in sorted(count):
+            while count[num] > 0:
+                for i in range(k):
+                    if count[num + i] == 0:
+                        return False
+                    count[num + i] -= 1
+        return True
+
+
+# If you want to run Python Tutor::::
+
+# from collections import Counter
+# from typing import List
+
+# class Solution:
+#     def isPossibleDivide(self, nums: List[int], k: int) -> bool:
+#         # Step 1: Check if total numbers can be split into groups of size k
+#         if len(nums) % k != 0:
+#             return False
+
+#         # Step 2: Count the frequency of each number
+#         count = Counter(nums)
+
+#         # Step 3: Sort the unique numbers and try to create consecutive groups
+#         for num in sorted(count):
+#             while count[num] > 0:
+#                 for i in range(k):
+#                     if count[num + i] == 0:
+#                         return False
+#                     count[num + i] -= 1
+
+#         # Step 4: All numbers grouped successfully
+#         return True
+
+
+# # ----------------------
+# # Test the solution here
+
+# sol = Solution()
+
+# # Example 1
+# nums1 = [1,2,3,3,4,4,5,6]
+# k1 = 4
+# print(sol.isPossibleDivide(nums1, k1))  # Expected: True
+
