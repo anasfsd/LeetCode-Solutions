@@ -1,0 +1,25 @@
+class Solution:
+    def latestTimeCatchTheBus(self, buses: List[int], passengers: List[int], capacity: int) -> int:
+        buses.sort()
+        passengers.sort()
+        passenger_set = set(passengers)
+        
+        i = 0  # pointer for passengers
+        for bus in buses:
+            cnt = 0
+            # fill current bus
+            while i < len(passengers) and passengers[i] <= bus and cnt < capacity:
+                i += 1
+                cnt += 1
+        
+        # Now, try times from the last person who got on (or bus time)
+        # Go backwards until we find a time that's not used
+        if cnt < capacity:
+            candidate = buses[-1]
+        else:
+            candidate = passengers[i - 1] - 1
+        
+        while candidate in passenger_set:
+            candidate -= 1
+        
+        return candidate
