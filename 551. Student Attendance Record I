@@ -1,0 +1,11 @@
+class Solution:
+    def checkRecord(self, s: str) -> bool:
+        # Condition 1: Fewer than 2 'A's
+        if s.count('A') >= 2:
+            return False
+        
+        # Condition 2: No 3 consecutive 'L's
+        if 'LLL' in s:
+            return False
+        
+        return True
