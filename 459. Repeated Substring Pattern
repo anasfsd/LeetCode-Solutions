@@ -1,0 +1,9 @@
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        return s in (s + s)[1:-1]
+#Example:
+#s = "abab"
+#s + s = "abababab"
+#(s + s)[1:-1] = "bababa"
+#"abab" is in "bababa" → True
+
