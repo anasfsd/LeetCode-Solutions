@@ -1,0 +1,13 @@
+class Solution:
+    def maximumUnits(self, boxTypes, truckSize):
+        boxTypes.sort(key=lambda x: x[1], reverse=True)
+        units = 0
+        for box in boxTypes:
+            num = box[0]
+            unit = box[1]
+            take = min(num, truckSize)
+            units += take * unit
+            truckSize -= take
+            if truckSize == 0:
+                break
+        return units
