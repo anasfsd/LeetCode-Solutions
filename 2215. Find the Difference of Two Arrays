@@ -1,0 +1,12 @@
+class Solution:
+    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
+        set1 = set(nums1)  # unique elements from nums1
+        set2 = set(nums2)  # unique elements from nums2
+        
+        # Elements in nums1 not in nums2
+        diff1 = list(set1 - set2)
+        
+        # Elements in nums2 not in nums1
+        diff2 = list(set2 - set1)
+        
+        return [diff1, diff2]
