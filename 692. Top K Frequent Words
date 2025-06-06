@@ -1,0 +1,19 @@
+class Solution:
+    def topKFrequent(self, words, k):
+        # Step 1: Count word frequencies
+        freq = Counter(words)
+
+        # Step 2: Make a list of (word, count)
+        items = list(freq.items())
+
+        # Step 3: Sort the list by:
+        #  - First: count (high to low)
+        #  - Second: word (A to Z)
+        items.sort(key=lambda x: (-x[1], x[0]))
+
+        # Step 4: Take the top k words
+        result = []
+        for i in range(k):
+            result.append(items[i][0])
+
+        return result
