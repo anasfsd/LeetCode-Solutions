@@ -1,0 +1,7 @@
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        for letter in ransomNote:
+            # Check if magazine has the letter
+            if ransomNote.count(letter) > magazine.count(letter):
+                return False  # Not enough of this letter
+        return True  # All letters are available
