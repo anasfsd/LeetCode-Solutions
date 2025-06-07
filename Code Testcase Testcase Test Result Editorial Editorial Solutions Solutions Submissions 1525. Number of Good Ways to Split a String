@@ -1,0 +1,18 @@
+class Solution:
+    def numSplits(self, s: str) -> int:
+        from collections import Counter
+
+        right = Counter(s)      # Count of all characters in the string
+        left = set()            # To store unique characters from the left
+        good_splits = 0
+
+        for ch in s:
+            left.add(ch)        # Add character to left set
+            right[ch] -= 1      # Reduce its count from right side
+            if right[ch] == 0:  # Remove if it's no longer in the right side
+                del right[ch]
+
+            if len(left) == len(right):  # Compare number of unique letters
+                good_splits += 1
+
+        return good_splits
