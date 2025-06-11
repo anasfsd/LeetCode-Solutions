@@ -1,0 +1,10 @@
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        # Step 1: convert number to 32-bit binary string
+        b = format(n, '032b')     # example: '00000010100101000001111010011100'
+
+        # Step 2: reverse the string
+        b = b[::-1]               # example: '00111001011110000010100101000000'
+
+        # Step 3: convert binary string back to integer
+        return int(b, 2)          # example: 964176192
