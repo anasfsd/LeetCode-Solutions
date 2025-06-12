@@ -1,0 +1,24 @@
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        start_color = image[sr][sc]
+        
+        # If the new color is the same as the starting color, no change needed
+        if start_color == color:
+            return image
+
+        def dfs(r, c):
+            # Base case: check if current pixel is out of bounds or not the same color
+            if r < 0 or r >= len(image) or c < 0 or c >= len(image[0]) or image[r][c] != start_color:
+                return
+            # Change the color
+            image[r][c] = color
+            # Recursively call in all 4 directions
+            dfs(r+1, c)  # down
+            dfs(r-1, c)  # up
+            dfs(r, c+1)  # right
+            dfs(r, c-1)  # left
+
+        # Start the flood fill
+        dfs(sr, sc)
+
+        return image
