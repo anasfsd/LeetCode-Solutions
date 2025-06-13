@@ -1,0 +1,13 @@
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        if n < 1:
+            return False
+        while n % 3 == 0:
+            n = n // 3
+        return n == 1
+#27 → 27 / 3 = 9 → 9 / 3 = 3 → 3 / 3 = 1 ✅ → return True
+#0 and negative numbers ❌ → return False
+
+#So, return n == 1 checks if we perfectly divided n by 3 all the way to 1.
+#If yes → it's a power of 3 ✅
+#If no → it's not ❌
